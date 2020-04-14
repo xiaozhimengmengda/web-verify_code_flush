@@ -21,7 +21,7 @@ class VerifyCode:
         """
         self.number = numbers
 
-    def draw_lines(self, draw, num, width, height):
+    def draw_lines(self, draw, width, height):
         """划线"""
 
         x1 = random.randint(0, width / 2)
@@ -57,7 +57,7 @@ class VerifyCode:
         for item in range(self.number):
             draw.text((5+random.randint(-5, 5)+23*item, 5+random.randint(-5, 5)), text=code[item],
                       fill=self.random_color(), font=font)
-            self.draw_lines(draw, self.number, width, height)
+            self.draw_lines(draw, width, height)
         return im, code
 
 
@@ -67,7 +67,7 @@ class SimpleView(HTTPMethodView):
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>登录</title>
+    <title>马哥教育公开课</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -79,7 +79,7 @@ class SimpleView(HTTPMethodView):
 <form class="form-inline" method="post" action="">
     <div>
          <div class="form-group">
-                            {error}                               
+                {error}                               
         </div>
         <div class="form-group">
             <label for="exampleInputName2">验证码</label>
@@ -142,6 +142,7 @@ jQuery(document).ready(function(){{
         im.save(buf, "jpeg")
         buf_str = buf.getvalue()
         base64_data = base64.b64encode(buf_str).decode()
+        print(code)
         return base64_data, code
 
     def response(self, id, error):
