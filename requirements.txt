@@ -1,2 +1,2 @@
 sanic==19.9.0
-Pillow==7.0.0
+Pillow==8.3.2
